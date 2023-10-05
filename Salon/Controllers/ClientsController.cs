@@ -51,5 +51,25 @@ namespace Salon.Controllers
         .FirstOrDefault(client => client.ClientId == id);
       return View(thisClient);
     }
+
+    public ActionResult Edit(int id)
+    {
+      ViewBag.PageTitle = "Edit Client";
+      ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "Name");
+      Client thisClient = _db.Clients.FirstOrDefault(client => client.ClientId == id);
+      return View(thisClient);
+    }
+
+    [HttpPost]
+     public ActionResult Edit(Client client)
+     {
+      if (client.StylistId == 0)
+      {
+        return RedirectToAction("Edit");
+      }
+      _db.Update(client);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+     }
   }
 }

@@ -1,0 +1,15 @@
+@{
+  Layout = "_Layout";
+}
+
+@model Salon.Models.Stylist
+
+<h4>@Model.Name</h4>
+@using (Html.BeginForm())
+{
+  <p>Select "Delete" to confirm</p>
+
+  <input type="submit" value="Delete" class="btn btn-danger" />
+}
+
+<p>@Html.ActionLink("Back to Home", "Index", "Home")</p>

@@ -21,5 +21,19 @@ namespace Salon.Controllers
       List<Stylist> model = _db.Stylists.ToList();
       return View(model);
     }
+
+    public ActionResult Create()
+    {
+      ViewBag.PageTitle = "Add a Stylist";
+      return View();
+    }
+    [HttpPost]
+    public ActionResult Create(Stylist stylist)
+    {
+      _db.Stylists.Add(stylist);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
   }
 }
